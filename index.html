@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccination Safety Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        #app {
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .screen {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="home" class="screen active">
+            <h1>Vaccination Safety Tracker</h1>
+            <button onclick="navigate('registration')">Register Baby</button>
+            <button onclick="navigate('vaccineInfo')">Vaccine Information</button>
+            <button onclick="navigate('reminders')">Set Reminders</button>
+            <button onclick="navigate('adverseEvents')">Report Side Effects</button>
+            <button onclick="navigate('feedback')">Give Feedback</button>
+        </div>
+        
+        <div id="registration" class="screen">
+            <h2>Baby Registration</h2>
+            <label>Baby's Name: <input type="text" id="babyName"></label>
+            <label>Date of Birth: <input type="date" id="dob"></label>
+            <label>Guardian's Name: <input type="text" id="guardian"></label>
+            <label>Contact Number: <input type="tel" id="contact"></label>
+            <button onclick="saveRegistration()">Save & Continue</button>
+            <button onclick="navigate('home')">Back</button>
+        </div>
+        
+        <div id="vaccineInfo" class="screen">
+            <h2>Vaccine Information</h2>
+            <ul>
+                <li onclick="showVaccineDetails('BCG')">BCG</li>
+                <li onclick="showVaccineDetails('Hepatitis B')">Hepatitis B</li>
+                <li onclick="showVaccineDetails('MMR')">MMR</li>
+            </ul>
+            <button onclick="navigate('home')">Back</button>
+        </div>
+        
+        <div id="reminders" class="screen">
+            <h2>Set Vaccination Reminders</h2>
+            <button onclick="sendSMSReminder()">Send SMS Reminder</button>
+            <button onclick="navigate('home')">Back</button>
+        </div>
+        
+        <div id="adverseEvents" class="screen">
+            <h2>Report Adverse Event</h2>
+            <label>Vaccine: <input type="text" id="vaccine"></label>
+            <label>Side Effect: <input type="text" id="sideEffect"></label>
+            <button onclick="submitAdverseEvent()">Submit Report</button>
+            <button onclick="navigate('home')">Back</button>
+        </div>
+        
+        <div id="feedback" class="screen">
+            <h2>Feedback</h2>
+            <textarea id="feedbackText" placeholder="Enter your feedback..."></textarea>
+            <button onclick="submitFeedback()">Submit</button>
+            <button onclick="navigate('home')">Back</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
